@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Optional: Add parallax effect to hero section
+// Advanced parallax and scroll effects
 (() => {
     const supportsMatchMedia = typeof window.matchMedia === 'function';
     const prefersReducedMotion = supportsMatchMedia &&
@@ -287,12 +287,142 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    window.addEventListener('scroll', () => {
+    const hero = document.querySelector('#hero');
+    const saveTheDate = document.querySelector('#save-the-date');
+    const schedule = document.querySelector('#schedule');
+    const locations = document.querySelector('#locations');
+    const details = document.querySelector('#details');
+    const gifts = document.querySelector('#gifts');
+
+    let ticking = false;
+
+    function updateParallax() {
         const scrolled = window.pageYOffset;
-        const hero = document.querySelector('#hero');
-        if (hero && scrolled < window.innerHeight) {
+        const windowHeight = window.innerHeight;
+
+        // Hero parallax - moves slower and fades out
+        if (hero && scrolled < windowHeight) {
             hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-            hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.8;
+            hero.style.opacity = 1 - (scrolled / windowHeight) * 0.8;
+        }
+
+        // Section parallax - different speeds for depth effect
+        if (saveTheDate) {
+            const rect = saveTheDate.getBoundingClientRect();
+            if (rect.top < windowHeight && rect.bottom > 0) {
+                const offset = (windowHeight - rect.top) * 0.15;
+                saveTheDate.style.transform = `translateY(${offset}px)`;
+            }
+        }
+
+        if (schedule) {
+            const rect = schedule.getBoundingClientRect();
+            if (rect.top < windowHeight && rect.bottom > 0) {
+                const offset = (windowHeight - rect.top) * 0.1;
+                schedule.style.transform = `translateY(${-offset}px)`;
+            }
+        }
+
+        if (locations) {
+            const rect = locations.getBoundingClientRect();
+            if (rect.top < windowHeight && rect.bottom > 0) {
+                const offset = (windowHeight - rect.top) * 0.12;
+                locations.style.transform = `translateY(${offset}px)`;
+            }
+        }
+
+        if (details) {
+            const rect = details.getBoundingClientRect();
+            if (rect.top < windowHeight && rect.bottom > 0) {
+                const offset = (windowHeight - rect.top) * 0.08;
+                details.style.transform = `translateY(${-offset}px)`;
+            }
+        }
+
+        if (gifts) {
+            const rect = gifts.getBoundingClientRect();
+            if (rect.top < windowHeight && rect.bottom > 0) {
+                const offset = (windowHeight - rect.top) * 0.1;
+                gifts.style.transform = `translateY(${offset}px)`;
+            }
+        }
+
+        ticking = false;
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    }
+
+    window.addEventListener('scroll', requestTick, { passive: true });
+})();
+
+// Add 3D tilt effect on cards
+(() => {
+    const supportsMatchMedia = typeof window.matchMedia === 'function';
+    const prefersReducedMotion = supportsMatchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+        return;
+    }
+
+    const cards = document.querySelectorAll('.location-card, .detail-card, .hero-card');
+
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = (y - centerY) / 20;
+            const rotateY = (centerX - x) / 20;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+        });
+    });
+})();
+
+// Add smooth scroll reveal for text content
+(() => {
+    const supportsMatchMedia = typeof window.matchMedia === 'function';
+    const prefersReducedMotion = supportsMatchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+        return;
+    }
+
+    const textElements = document.querySelectorAll('.text, p:not(.hero-date):not(.hero-place)');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    textElements.forEach(el => {
+        if (!el.closest('.hero-card')) {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
         }
     });
 })();
