@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Advanced parallax and scroll effects
+// Optional: Add parallax effect to hero section
 (() => {
     const supportsMatchMedia = typeof window.matchMedia === 'function';
     const prefersReducedMotion = supportsMatchMedia &&
@@ -287,77 +287,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    const hero = document.querySelector('#hero');
-    const saveTheDate = document.querySelector('#save-the-date');
-    const schedule = document.querySelector('#schedule');
-    const locations = document.querySelector('#locations');
-    const details = document.querySelector('#details');
-    const gifts = document.querySelector('#gifts');
-
-    let ticking = false;
-
-    function updateParallax() {
+    window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
-        const windowHeight = window.innerHeight;
-
-        // Hero parallax - moves slower and fades out
-        if (hero && scrolled < windowHeight) {
+        const hero = document.querySelector('#hero');
+        if (hero && scrolled < window.innerHeight) {
             hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-            hero.style.opacity = 1 - (scrolled / windowHeight) * 0.8;
+            hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.8;
         }
-
-        // Section parallax - different speeds for depth effect
-        if (saveTheDate) {
-            const rect = saveTheDate.getBoundingClientRect();
-            if (rect.top < windowHeight && rect.bottom > 0) {
-                const offset = (windowHeight - rect.top) * 0.15;
-                saveTheDate.style.transform = `translateY(${offset}px)`;
-            }
-        }
-
-        if (schedule) {
-            const rect = schedule.getBoundingClientRect();
-            if (rect.top < windowHeight && rect.bottom > 0) {
-                const offset = (windowHeight - rect.top) * 0.1;
-                schedule.style.transform = `translateY(${-offset}px)`;
-            }
-        }
-
-        if (locations) {
-            const rect = locations.getBoundingClientRect();
-            if (rect.top < windowHeight && rect.bottom > 0) {
-                const offset = (windowHeight - rect.top) * 0.12;
-                locations.style.transform = `translateY(${offset}px)`;
-            }
-        }
-
-        if (details) {
-            const rect = details.getBoundingClientRect();
-            if (rect.top < windowHeight && rect.bottom > 0) {
-                const offset = (windowHeight - rect.top) * 0.08;
-                details.style.transform = `translateY(${-offset}px)`;
-            }
-        }
-
-        if (gifts) {
-            const rect = gifts.getBoundingClientRect();
-            if (rect.top < windowHeight && rect.bottom > 0) {
-                const offset = (windowHeight - rect.top) * 0.1;
-                gifts.style.transform = `translateY(${offset}px)`;
-            }
-        }
-
-        ticking = false;
-    }
-
-    function requestTick() {
-        if (!ticking) {
-            requestAnimationFrame(updateParallax);
-            ticking = true;
-        }
-    }
-
-    window.addEventListener('scroll', requestTick, { passive: true });
+    });
 })();
 
 // Add 3D tilt effect on cards

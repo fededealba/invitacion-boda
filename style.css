@@ -281,7 +281,6 @@ section.visible {
     background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    will-change: transform;
 }
 
 #save-the-date .date {
