@@ -710,7 +710,7 @@ ul li {
     flex-direction: column;
     gap: 0.5rem;
     padding: 0.5rem;
-    background: rgba(255, 255, 255, 0.95);
+    background: #f4efe3;
     backdrop-filter: blur(22px) saturate(180%);
     -webkit-backdrop-filter: blur(22px) saturate(180%);
     border-radius: 24px;
