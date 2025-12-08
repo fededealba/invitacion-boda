@@ -27,7 +27,12 @@ html {
 body {
     margin: 0;
     font-family: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: url('img/wallpaper.png') center/cover no-repeat fixed;
+    background-color: #f4efe3;
+    background-image: url('img/wallpaper.png');
+    background-repeat: repeat;
+    background-position: center top;
+    background-attachment: fixed;
+    background-size: 520px auto;
     color: var(--text-primary);
     line-height: 1.7;
     overflow-x: hidden;
@@ -898,6 +903,12 @@ ul li {
         bottom: 1rem;
         left: 0.9rem;
         padding-inline: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        background-size: 680px auto;
     }
 }
 
