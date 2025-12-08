@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navToggle.setAttribute('aria-expanded', String(isOpen));
         });
 
-        topNav.querySelectorAll('a').forEach(link => {
+        topNav.querySelectorAll('.nav-item').forEach(link => {
             link.addEventListener('click', () => {
                 if (smallScreenQuery.matches) {
                     topNav.classList.remove('is-open');
