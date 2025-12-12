@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boda Federico & Hélène</title>
     <meta name="description"
-        content="Wedding celebration of Federico & Hélène in Tequisquiapan, Mexico – March 7, 2026. Schedule, locations and RSVP information." />
+        content="Wedding celebration of Federico & Hélène in Tequisquiapan, Mexico – March 7, 2026." />
     <meta property="og:title" content="Boda Federico & Hélène" />
     <meta property="og:description"
         content="Te esperamos en Tequisquiapan, México el 7 de Marzo, 2026 para celebrar la boda de Federico & Hélène." />
@@ -24,276 +24,26 @@
 </head>
 
 <body>
-    <!-- Language Switch -->
-    <div class="lang-switch">
-        <button class="lang-btn" onclick="changeLanguage('es')">ES</button>
-        <button class="lang-btn" onclick="changeLanguage('fr')">FR</button>
+    <div class="invitation-container">
+        <div class="envelope-wrapper" id="envelopeWrapper">
+            <div class="envelope">
+                <img src="new_img/envelope.png" alt="Sobre" />
+            </div>
+            <div class="card-flip" id="cardFlip">
+                <div class="card-front">
+                    <img src="new_img/card.png" alt="Invitación Boda Federico & Hélène" />
+                    <div class="scroll-arrow" id="scrollArrow">
+                        <svg width="60" height="60" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 5L20 30M20 30L12 22M20 30L28 22" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <img src="new_img/card2.png" alt="Detalles de la Boda" />
+                </div>
+            </div>
+        </div>
     </div>
-
-    <!-- Top Navigation -->
-    <nav class="top-nav" aria-label="Sections">
-        <a class="nav-item" href="#save-the-date">
-            <img src="pill_img/calendar.png" alt="" class="nav-icon" />
-            <span class="sr-only" data-i18n="save_date_title">Save the Date</span>
-        </a>
-        <a class="nav-item" href="#schedule">
-            <img src="pill_img/clock.png" alt="" class="nav-icon" />
-            <span class="sr-only" data-i18n="schedule">Horario</span>
-        </a>
-        <a class="nav-item" href="#locations">
-            <img src="pill_img/map.png" alt="" class="nav-icon" />
-            <span class="sr-only" data-i18n="location">Lugares</span>
-        </a>
-        <a class="nav-item" href="#details">
-            <img src="pill_img/dresscode.png" alt="" class="nav-icon" />
-            <span class="sr-only" data-i18n="details_title">Detalles</span>
-        </a>
-        <a class="nav-item" href="#practical">
-            <img src="pill_img/info.png" alt="" class="nav-icon" />
-            <span class="sr-only" data-i18n="practical_title">Información práctica</span>
-        </a>
-        <a class="nav-item" href="#gifts">
-            <img src="pill_img/gifts.png" alt="" class="nav-icon" />
-            <span class="sr-only" data-i18n="gifts_title">Regalos</span>
-        </a>
-        <a class="nav-item" href="#rsvp">
-            <img src="pill_img/rsvp.png" alt="" class="nav-icon" />
-            <span class="sr-only" data-i18n="rsvp_title">Confirmar asistencia</span>
-        </a>
-    </nav>
-
-    <button class="nav-toggle" type="button" data-i18n="nav_toggle_label" aria-label="Abrir navegación"
-        aria-expanded="false">
-        Secciones
-    </button>
-
-    <!-- Hero Section -->
-    <section id="hero">
-        <div class="hero-card">
-            <h1 data-i18n="title">Federico & Hélène</h1>
-            <p class="subtitle" data-i18n="subtitle">se van a casar 🎉</p>
-            <p class="hero-date" data-i18n="date">Sábado 7 de marzo de 2026</p>
-            <p class="hero-place" data-i18n="place">Tequisquiapan, Qro., Mexico</p>
-        </div>
-        <div class="scroll-indicator">↓</div>
-    </section>
-
-    <!-- Save the Date Section -->
-    <section id="save-the-date">
-        <div class="section-content">
-            <p class="date" data-i18n="date">Sábado 7 de marzo de 2026</p>
-            <p class="place" data-i18n="place">Tequisquiapan, Qro., Mexico</p>
-            <p class="text" data-i18n="text">
-                Nos encantaría celebrar este día contigo.
-            </p>
-        </div>
-    </section>
-
-    <!-- Schedule Section -->
-    <section id="schedule">
-        <div class="section-content">
-            <h2 data-i18n="schedule">Horario</h2>
-            <p class="section-subtitle" data-i18n="couple_intro">
-                Boda de Federico De Alba Michel y Hélène Toulotte.
-            </p>
-
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date" data-i18n="friday_date">Viernes 6 de marzo</div>
-                        <div class="timeline-title" data-i18n="icebreaker_title">Evento de bienvenida</div>
-                        <div class="timeline-location" data-i18n="icebreaker_time">18:00 · Norte B</div>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date" data-i18n="saturday_date">Sábado 7 de marzo</div>
-                        <div class="timeline-title" data-i18n="ceremony_title">Ceremonia</div>
-                        <div class="timeline-location" data-i18n="ceremony_time">14:00 · Hacienda Grande</div>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date" data-i18n="saturday_date">Sábado 7 de marzo</div>
-                        <div class="timeline-title" data-i18n="cocktail_title">Cóctel</div>
-                        <div class="timeline-location" data-i18n="cocktail_time">15:00 · Hacienda Grande</div>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date" data-i18n="sunday_date">Domingo 8 de marzo</div>
-                        <div class="timeline-title" data-i18n="brunch_title">Brunch</div>
-                        <div class="timeline-location" data-i18n="brunch_time">13:00 · Nautha</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Locations Section -->
-    <section id="locations">
-        <div class="section-content">
-            <h2 data-i18n="location">Lugares</h2>
-            <p class="section-subtitle" data-i18n="location_subtitle">Cómo llegar a cada evento</p>
-
-            <div class="location-grid">
-                <div class="location-card">
-                    <h3 data-i18n="icebreaker_location_title">Evento de bienvenida – Norte B</h3>
-                    <p data-i18n="icebreaker_location_address">
-                        Carretera Estatal 200-km 50, 76780 Tequisquiapan, Qro., Mexico
-                    </p>
-                    <a href="https://maps.app.goo.gl/hUo4vayNAEusjp6T7" target="_blank" rel="noopener noreferrer"
-                        data-i18n="view_map">
-                        Ver en Google Maps
-                    </a>
-                </div>
-
-                <div class="location-card">
-                    <h3 data-i18n="ceremony_location_title">Ceremonia y cóctel – Hacienda Grande</h3>
-                    <p data-i18n="ceremony_location_address">
-                        Fernando de La Mora Magdaleno 82, 76750 Tequisquiapan, Qro., Mexico
-                    </p>
-                    <a href="https://maps.app.goo.gl/ny8u15RtJ5TiF4vh8" target="_blank" rel="noopener noreferrer"
-                        data-i18n="view_map">
-                        Ver en Google Maps
-                    </a>
-                </div>
-
-                <div class="location-card">
-                    <h3 data-i18n="brunch_location_title">Brunch – Nautha</h3>
-                    <p data-i18n="brunch_location_address">
-                        Nautha, Centro, 76750 Tequisquiapan, Qro., Mexico
-                    </p>
-                    <a href="https://maps.app.goo.gl/NqCPRdMv3qLygNDs9" target="_blank" rel="noopener noreferrer"
-                        data-i18n="view_map">
-                        Ver en Google Maps
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Details Section -->
-    <section id="details">
-        <div class="section-content">
-            <h2 data-i18n="details_title">Detalles</h2>
-
-            <div class="details-grid">
-                <div class="detail-card">
-                    <h3 data-i18n="dress_code">Código de vestimenta</h3>
-                    <p data-i18n="dress_code_text">
-                        Formal (traje y corbata, vestido elegante). Tacones altos no recomendados (césped y grava).
-                    </p>
-                </div>
-
-                <div class="detail-card">
-                    <h3 data-i18n="children_title">Niños</h3>
-                    <p data-i18n="children_text">
-                        Niños bienvenidos.
-                    </p>
-                </div>
-
-                <div class="detail-card">
-                    <h3 data-i18n="food_title">Comida</h3>
-                    <p data-i18n="food_text">
-                        Menú mexicano, opción vegetariana disponible.
-                    </p>
-                    <p>
-                        <span data-i18n="allergies_text">Alergias: escribir a </span>
-                        <a href="mailto:fede­dealba@gmail.com">fede­dealba@gmail.com</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Practical Info Section -->
-    <section id="practical">
-        <div class="section-content">
-            <h2 data-i18n="practical_title">Información práctica</h2>
-
-            <div class="practical-content">
-                <div class="practical-item">
-                    <h3 data-i18n="transport_title">Transporte</h3>
-                    <p data-i18n="transport_text_1">
-                        Estacionamiento disponible en Hacienda Grande.
-                    </p>
-                    <p data-i18n="transport_text_2">
-                        También hay estacionamiento cerca de Nautha para el brunch.
-                    </p>
-                </div>
-
-                <div class="practical-item">
-                    <h3 data-i18n="accommodation_title">Hospedaje recomendado</h3>
-                    <p data-i18n="accommodation_text_1">
-                        Hotel Quinta Los Vela.
-                    </p>
-                    <p data-i18n="accommodation_text_2">
-                        Nautha 7, Centro, 76750 Tequisquiapan.
-                    </p>
-                    <p>
-                        <a href="https://quintalosvela.com.mx/" target="_blank" rel="noopener noreferrer"
-                            data-i18n="view_website">
-                            Sitio web del hotel
-                        </a>
-                        &middot;
-                        <a href="https://maps.app.goo.gl/sh4wpFmhHAYtHqbZA" target="_blank" rel="noopener noreferrer"
-                            data-i18n="view_map">
-                            Ver en Google Maps
-                        </a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gifts Section -->
-    <section id="gifts">
-        <div class="section-content">
-            <h2 data-i18n="gifts_title">Regalos</h2>
-            <p data-i18n="gifts_text_1">
-                Su presencia ya llena nuestro día de alegría (y sí, aceptamos totalmente el cliché 💛).
-            </p>
-            <p data-i18n="gifts_text_2">
-                Si aun así desean obsequiar algo, una contribución en efectivo será lo más sencillo.
-            </p>
-            <p data-i18n="gifts_text_3">
-                Pueden entregarla el día del evento, o dársela a los padres o al hermano de Federico antes de la boda
-                si les resulta más cómodo.
-            </p>
-        </div>
-    </section>
-
-    <!-- RSVP Section -->
-    <section id="rsvp">
-        <div class="section-content">
-            <h2 data-i18n="rsvp_title">Confirmar asistencia</h2>
-            <p data-i18n="rsvp_text">
-                Por favor avísanos si puedes venir.
-            </p>
-            <p>
-                <span data-i18n="rsvp_message">Envíanos un mensaje a:</span>
-                <a href="mailto:fede­dealba@gmail.com">fede­dealba@gmail.com</a>
-            </p>
-            <p data-i18n="or_whatsapp">o escríbenos por WhatsApp 💌</p>
-
-            <div style="margin-top: 2rem;">
-                <h3 data-i18n="contacts_title">Contactos</h3>
-                <ul>
-                    <li data-i18n="contact_federico">Federico: fede­dealba@gmail.com</li>
-                    <li data-i18n="contact_helene">Hélène: toulotte.helene@gmail.com</li>
-                    <li data-i18n="contact_planner">Wedding planner: jess@gmail.com</li>
-                </ul>
-            </div>
-        </div>
-    </section>
 
     <script src="script.js"></script>
 </body>
