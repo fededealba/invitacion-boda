@@ -56,7 +56,8 @@ body::before {
 }
 
 .envelope-wrapper:hover .envelope {
-    transform: translate(5%, 5%) scale(1.02);
+    -webkit-transform: translate(5%, 5%) scale(1.02) rotate(15deg);
+    transform: translate(5%, 5%) scale(1.02) rotate(15deg);
 }
 
 /* Card Flip Container */
@@ -66,15 +67,17 @@ body::before {
     max-width: 600px;
     height: auto;
     z-index: 1;
+    -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
+    -webkit-transition: -webkit-transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-front,
 .card-back {
     width: 100%;
-    backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     position: relative;
 }
 
@@ -89,6 +92,7 @@ body::before {
     position: absolute;
     top: 0;
     left: 0;
+    -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
 }
 
@@ -97,9 +101,12 @@ body::before {
     position: absolute;
     bottom: -80px;
     left: 50%;
+    -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
+    -webkit-animation: bounce 2s infinite;
     animation: bounce 2s infinite;
     opacity: 0.9;
+    -webkit-transition: opacity 0.3s ease;
     transition: opacity 0.3s ease;
 }
 
@@ -107,14 +114,32 @@ body::before {
     opacity: 1;
 }
 
-@keyframes bounce {
+@-webkit-keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
+        -webkit-transform: translateX(-50%) translateY(0);
         transform: translateX(-50%) translateY(0);
     }
     40% {
+        -webkit-transform: translateX(-50%) translateY(-10px);
         transform: translateX(-50%) translateY(-10px);
     }
     60% {
+        -webkit-transform: translateX(-50%) translateY(-5px);
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        -webkit-transform: translateX(-50%) translateY(0);
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        -webkit-transform: translateX(-50%) translateY(-10px);
+        transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+        -webkit-transform: translateX(-50%) translateY(-5px);
         transform: translateX(-50%) translateY(-5px);
     }
 }
@@ -127,6 +152,7 @@ body::before {
 
 /* Flipped state */
 .card-flip.flipped {
+    -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
 }
 
@@ -139,7 +165,9 @@ body::before {
     max-width: 450px;
     height: auto;
     z-index: 0;
+    -webkit-transform: rotate(15deg);
     transform: rotate(15deg);
+    -webkit-transition: -webkit-transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
     transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
 }
 
@@ -147,11 +175,13 @@ body::before {
     width: 100%;
     height: auto;
     object-fit: contain;
+    -webkit-filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
     filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
 }
 
 /* Envelope hidden on scroll */
 .envelope.hidden {
+    -webkit-transform: translate(100%, -100%) rotate(45deg);
     transform: translate(100%, -100%) rotate(45deg);
     opacity: 1;
     pointer-events: none;
@@ -159,6 +189,7 @@ body::before {
 
 /* Open State Animation (on click) */
 .envelope-wrapper.open .envelope {
+    -webkit-transform: translate(100vw, -100vh) rotate(45deg);
     transform: translate(100vw, -100vh) rotate(45deg);
     opacity: 0;
     pointer-events: none;
