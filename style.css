@@ -116,10 +116,12 @@ body::before {
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
-    width: 25%;
-    height: 6%;
+    width: 30%;
+    height: 8%;
     cursor: pointer;
     z-index: 10;
+    pointer-events: auto;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Scroll Arrow */
