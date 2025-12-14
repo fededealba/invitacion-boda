@@ -42,6 +42,52 @@ body::before {
     pointer-events: none;
 }
 
+/* Navigation Buttons */
+.nav-buttons {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 100;
+    pointer-events: auto;
+}
+
+.nav-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 0, 0, 0.15);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.nav-btn:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.9);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.nav-btn.active {
+    background-color: rgba(255, 255, 255, 0.35);
+    border-color: rgba(255, 255, 255, 0.6);
+    color: white;
+    -webkit-transform: scale(1.15);
+    transform: scale(1.15);
+}
+
 /* Envelope Wrapper */
 .envelope-wrapper {
     position: relative;
@@ -256,6 +302,16 @@ body::before {
         max-width: 350px;
         top: 15%;
         right: -5%;
+    }
+
+    .nav-buttons {
+        left: 50%;
+        top: auto;
+        bottom: 20px;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        flex-direction: row;
+        gap: 20px;
     }
 }
 

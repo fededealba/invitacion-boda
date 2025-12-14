@@ -5,8 +5,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const card1 = document.getElementById('card1');
     const card2 = document.getElementById('card2');
     const card3a = document.getElementById('card3a');
+    const navButtons = document.querySelectorAll('.nav-btn');
 
     let currentCard = card1;
+
+    // Navigation button functionality
+    navButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetCardId = button.getAttribute('data-card');
+            const targetCard = document.getElementById(targetCardId);
+
+            if (targetCard) {
+                switchCard(targetCard);
+                updateActiveButton(button);
+            }
+        });
+    });
+
+    function updateActiveButton(activeBtn) {
+        navButtons.forEach(btn => btn.classList.remove('active'));
+        activeBtn.classList.add('active');
+    }
+
+    function updateActiveButtonByCard(cardId) {
+        navButtons.forEach(btn => {
+            if (btn.getAttribute('data-card') === cardId) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    }
 
     // Envelope click functionality (only works when clicking the envelope itself)
     if (envelope) {
@@ -66,12 +95,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if (scrollPosition > windowHeight * 1.8) {
                 // Phase 3: Show card3a at 180% scroll
                 switchCard(card3a);
+                updateActiveButtonByCard('card3a');
             } else if (scrollPosition > windowHeight * 1.0) {
                 // Phase 2: Show card2 at 100% scroll
                 switchCard(card2);
+                updateActiveButtonByCard('card2');
             } else {
                 // Initial state: Show card1
                 switchCard(card1);
+                updateActiveButtonByCard('card1');
             }
         }, 10);
     });
