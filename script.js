@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const card1 = document.getElementById('card1');
     const card2 = document.getElementById('card2');
     const card3a = document.getElementById('card3a');
-    const card3b = document.getElementById('card3b');
 
     let currentCard = card1;
 
@@ -59,10 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Determine which card to show based on scroll position
-            if (scrollPosition > windowHeight * 2.5) {
-                // Phase 4: Show card3b at 250% scroll
-                switchCard(card3b);
-            } else if (scrollPosition > windowHeight * 1.8) {
+            if (scrollPosition > windowHeight * 1.8) {
                 // Phase 3: Show card3a at 180% scroll
                 switchCard(card3a);
             } else if (scrollPosition > windowHeight * 1.0) {
