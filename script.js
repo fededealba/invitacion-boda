@@ -7,11 +7,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const card3a = document.getElementById('card3a');
     const card3b = document.getElementById('card3b');
 
+    let currentCard = card1;
+
     // Envelope click functionality
     if (envelopeWrapper) {
         envelopeWrapper.addEventListener('click', () => {
             envelopeWrapper.classList.toggle('open');
         });
+    }
+
+    function switchCard(newCard) {
+        if (currentCard !== newCard) {
+            // Flip out current card
+            currentCard.classList.add('flipping-out');
+            currentCard.classList.remove('active');
+
+            // Flip in new card after a short delay
+            setTimeout(() => {
+                currentCard.classList.remove('flipping-out');
+                newCard.classList.add('active');
+                currentCard = newCard;
+            }, 400);
+        }
     }
 
     // Scroll-triggered animations
@@ -30,38 +47,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 scrollArrow.classList.remove('hidden');
             }
 
-            // Phase 1: Hide envelope at 20% scroll
-            if (scrollPosition > windowHeight * 0.2) {
+            // Phase 1: Hide envelope at 30% scroll
+            if (scrollPosition > windowHeight * 0.3) {
                 envelope.classList.add('hidden');
             } else {
                 envelope.classList.remove('hidden');
             }
 
             // Determine which card to show based on scroll position
-            if (scrollPosition > windowHeight * 1.2) {
-                // Phase 4: Show card3b at 120% scroll
-                card1.classList.remove('active');
-                card2.classList.remove('active');
-                card3a.classList.remove('active');
-                card3b.classList.add('active');
-            } else if (scrollPosition > windowHeight * 0.8) {
-                // Phase 3: Show card3a at 80% scroll
-                card1.classList.remove('active');
-                card2.classList.remove('active');
-                card3a.classList.add('active');
-                card3b.classList.remove('active');
-            } else if (scrollPosition > windowHeight * 0.5) {
-                // Phase 2: Show card2 at 50% scroll
-                card1.classList.remove('active');
-                card2.classList.add('active');
-                card3a.classList.remove('active');
-                card3b.classList.remove('active');
+            if (scrollPosition > windowHeight * 2.5) {
+                // Phase 4: Show card3b at 250% scroll
+                switchCard(card3b);
+            } else if (scrollPosition > windowHeight * 1.8) {
+                // Phase 3: Show card3a at 180% scroll
+                switchCard(card3a);
+            } else if (scrollPosition > windowHeight * 1.0) {
+                // Phase 2: Show card2 at 100% scroll
+                switchCard(card2);
             } else {
                 // Initial state: Show card1
-                card1.classList.add('active');
-                card2.classList.remove('active');
-                card3a.classList.remove('active');
-                card3b.classList.remove('active');
+                switchCard(card1);
             }
         }, 10);
     });
