@@ -112,12 +112,27 @@ body::before {
 /* PDF Link on card3a */
 .pdf-link {
     position: absolute;
-    bottom: 39.5%;
+    bottom: 39%;
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     width: 30%;
     height: 8%;
+    cursor: pointer;
+    z-index: 10;
+    pointer-events: auto;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+/* WhatsApp Link on card3a */
+.whatsapp-link {
+    position: absolute;
+    bottom: 17%;
+    left: 80%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 25%;
+    height: 15%;
     cursor: pointer;
     z-index: 10;
     pointer-events: auto;
