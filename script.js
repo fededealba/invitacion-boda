@@ -9,10 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentCard = card1;
 
-    // Envelope click functionality
+    // Envelope click functionality (only works on card1)
     if (envelopeWrapper) {
-        envelopeWrapper.addEventListener('click', () => {
-            envelopeWrapper.classList.toggle('open');
+        envelopeWrapper.addEventListener('click', (e) => {
+            // Only toggle envelope if we're on card1 and not clicking a link
+            if (currentCard === card1 && !e.target.closest('a')) {
+                envelopeWrapper.classList.toggle('open');
+            }
         });
     }
 

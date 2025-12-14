@@ -68,6 +68,7 @@ body::before {
     z-index: 1;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
+    pointer-events: auto;
 }
 
 .card {
@@ -105,6 +106,7 @@ body::before {
     height: auto;
     display: block;
     object-fit: contain;
+    pointer-events: none;
 }
 
 /* PDF Link on card3a */
