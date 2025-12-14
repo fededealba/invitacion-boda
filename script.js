@@ -10,13 +10,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Envelope click functionality (only works when clicking the envelope itself)
     if (envelope) {
-        envelope.addEventListener('click', (e) => {
+        const toggleEnvelope = (e) => {
             // Only toggle envelope if we're on card1
             if (currentCard === card1) {
+                e.preventDefault();
                 e.stopPropagation();
                 envelopeWrapper.classList.toggle('open');
             }
-        });
+        };
+
+        // Add both click and touchend events for better mobile support
+        envelope.addEventListener('click', toggleEnvelope);
+        envelope.addEventListener('touchend', toggleEnvelope);
     }
 
     function switchCard(newCard) {
