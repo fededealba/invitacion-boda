@@ -107,6 +107,19 @@ body::before {
     object-fit: contain;
 }
 
+/* PDF Link on card3a */
+.pdf-link {
+    position: absolute;
+    bottom: 39.5%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 25%;
+    height: 6%;
+    cursor: pointer;
+    z-index: 10;
+}
+
 /* Scroll Arrow */
 .scroll-arrow {
     position: absolute;
