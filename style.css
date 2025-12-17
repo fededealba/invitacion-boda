@@ -337,6 +337,11 @@ body::before {
 
 /* Mobile Adjustments */
 @media (max-width: 768px) {
+    body {
+        min-height: 100vh;
+        overflow: hidden;
+    }
+
     body::before {
         background-image: url('assets/background_mobile.jpeg');
     }
