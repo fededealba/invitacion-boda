@@ -66,26 +66,26 @@ body::before {
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
+    -webkit-transform: scale(1);
+    transform: scale(1);
 }
 
-.nav-btn:hover {
+.nav-btn:hover:not(.active) {
     background-color: rgba(255, 255, 255, 0.25);
     border-color: rgba(255, 255, 255, 0.5);
     color: rgba(255, 255, 255, 0.9);
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
 }
 
 .nav-btn.active {
-    background-color: rgba(255, 255, 255, 0.35);
-    border-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.7);
     color: white;
-    -webkit-transform: scale(1.15);
-    transform: scale(1.15);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
 }
 
 /* Envelope Wrapper */
@@ -158,12 +158,12 @@ body::before {
 /* PDF Link on card3a */
 .pdf-link {
     position: absolute;
-    bottom: 39%;
+    bottom: 38%;
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     width: 30%;
-    height: 8%;
+    height: 10%;
     cursor: pointer;
     z-index: 10;
     pointer-events: auto;
@@ -173,12 +173,12 @@ body::before {
 /* WhatsApp Link on card3a */
 .whatsapp-link {
     position: absolute;
-    bottom: 17%;
-    left: 80%;
+    bottom: 6%;
+    left: 70%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
-    width: 25%;
-    height: 15%;
+    width: 40%;
+    height: 18%;
     cursor: pointer;
     z-index: 10;
     pointer-events: auto;
@@ -201,6 +201,55 @@ body::before {
 
 .scroll-arrow:hover {
     opacity: 1;
+}
+
+/* Swipe Arrow (mobile only) */
+.swipe-arrow {
+    display: none;
+    position: absolute;
+    bottom: -80px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    z-index: 10;
+    pointer-events: none;
+    -webkit-animation: swipe-bounce 2s infinite;
+    animation: swipe-bounce 2s infinite;
+    opacity: 0.9;
+    -webkit-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease;
+}
+
+.swipe-arrow.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@-webkit-keyframes swipe-bounce {
+    0%, 20%, 50%, 80%, 100% {
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
+    40% {
+        -webkit-transform: translateX(calc(-50% + 10px));
+        transform: translateX(calc(-50% + 10px));
+    }
+    60% {
+        -webkit-transform: translateX(calc(-50% + 5px));
+        transform: translateX(calc(-50% + 5px));
+    }
+}
+
+@keyframes swipe-bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%);
+    }
+    40% {
+        transform: translateX(calc(-50% + 10px));
+    }
+    60% {
+        transform: translateX(calc(-50% + 5px));
+    }
 }
 
 @-webkit-keyframes bounce {
@@ -312,6 +361,14 @@ body::before {
         transform: translateX(-50%);
         flex-direction: row;
         gap: 20px;
+    }
+
+    .scroll-arrow {
+        display: none;
+    }
+
+    .swipe-arrow {
+        display: block;
     }
 }
 

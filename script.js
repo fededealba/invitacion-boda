@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const envelopeWrapper = document.getElementById('envelopeWrapper');
     const envelope = document.querySelector('.envelope');
     const scrollArrow = document.getElementById('scrollArrow');
+    const swipeArrow = document.getElementById('swipeArrow');
     const card1 = document.getElementById('card1');
     const card2 = document.getElementById('card2');
     const card3 = document.getElementById('card3');
@@ -38,19 +39,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Envelope click functionality (only works when clicking the envelope itself)
+    let envelopeTouchStartTime = 0;
+    let envelopeTouchStartX = 0;
+    let envelopeTouchStartY = 0;
+    let envelopeWasTapped = false;
+
     if (envelope) {
-        const toggleEnvelope = (e) => {
+        envelope.addEventListener('touchstart', (e) => {
+            envelopeTouchStartTime = Date.now();
+            envelopeTouchStartX = e.changedTouches[0].screenX;
+            envelopeTouchStartY = e.changedTouches[0].screenY;
+            envelopeWasTapped = false;
+        }, false);
+
+        envelope.addEventListener('touchend', (e) => {
             // Only toggle envelope if we're on card1
             if (currentCard === card1) {
+                const touchDuration = Date.now() - envelopeTouchStartTime;
+                const touchEndX = e.changedTouches[0].screenX;
+                const touchEndY = e.changedTouches[0].screenY;
+                const touchMoveX = Math.abs(touchEndX - envelopeTouchStartX);
+                const touchMoveY = Math.abs(touchEndY - envelopeTouchStartY);
+
+                // Only toggle if it was a quick tap without movement
+                if (touchDuration <= 300 && touchMoveX <= 10 && touchMoveY <= 10) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    envelopeWasTapped = true;
+                    envelopeWrapper.classList.toggle('open');
+                }
+            }
+        }, false);
+
+        // Desktop click support
+        envelope.addEventListener('click', (e) => {
+            if (currentCard === card1 && !envelopeWasTapped) {
                 e.preventDefault();
                 e.stopPropagation();
                 envelopeWrapper.classList.toggle('open');
             }
-        };
-
-        // Add both click and touchend events for better mobile support
-        envelope.addEventListener('click', toggleEnvelope);
-        envelope.addEventListener('touchend', toggleEnvelope);
+            envelopeWasTapped = false;
+        });
     }
 
     function switchCard(newCard) {
@@ -58,6 +87,18 @@ document.addEventListener('DOMContentLoaded', () => {
             // Flip out current card
             currentCard.classList.add('flipping-out');
             currentCard.classList.remove('active');
+
+            // Hide envelope when leaving card1
+            if (currentCard === card1 && newCard !== card1) {
+                envelope.classList.add('hidden');
+                // Also close the envelope if it was open
+                envelopeWrapper.classList.remove('open');
+            }
+
+            // Show envelope when returning to card1 (but keep it closed)
+            if (newCard === card1) {
+                envelope.classList.remove('hidden');
+            }
 
             // Flip in new card after a short delay
             setTimeout(() => {
@@ -68,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Swipe functionality
+    // Swipe functionality (mobile only)
     let touchStartX = 0;
     let touchStartY = 0;
     let touchEndX = 0;
@@ -94,6 +135,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const swipeDistanceX = touchEndX - touchStartX;
         const swipeDistanceY = Math.abs(touchEndY - touchStartY);
 
+        // Hide swipe arrow on any touch interaction
+        if (swipeArrow && Math.abs(swipeDistanceX) > 10) {
+            swipeArrow.classList.add('hidden');
+        }
+
         // Only register horizontal swipes (ignore if vertical swipe is dominant)
         if (Math.abs(swipeDistanceX) > minSwipeDistance && swipeDistanceY < Math.abs(swipeDistanceX)) {
             if (swipeDistanceX < 0) {
@@ -117,5 +163,45 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }, false);
+
+    // Scroll-triggered animations (desktop only)
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+
+        scrollTimeout = setTimeout(() => {
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+
+            // Hide arrow when user starts scrolling
+            if (scrollPosition > 10) {
+                scrollArrow.classList.add('hidden');
+            } else {
+                scrollArrow.classList.remove('hidden');
+            }
+
+            // Phase 1: Hide envelope at 30% scroll
+            if (scrollPosition > windowHeight * 0.3) {
+                envelope.classList.add('hidden');
+            } else {
+                envelope.classList.remove('hidden');
+            }
+
+            // Determine which card to show based on scroll position
+            if (scrollPosition > windowHeight * 1.8) {
+                // Phase 3: Show card3 at 180% scroll
+                switchCard(card3);
+                updateActiveButtonByCard('card3');
+            } else if (scrollPosition > windowHeight * 1.0) {
+                // Phase 2: Show card2 at 100% scroll
+                switchCard(card2);
+                updateActiveButtonByCard('card2');
+            } else {
+                // Initial state: Show card1
+                switchCard(card1);
+                updateActiveButtonByCard('card1');
+            }
+        }, 10);
+    });
 
 });
