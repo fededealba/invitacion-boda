@@ -40,6 +40,7 @@ body::before {
     align-items: center;
     perspective: 2000px;
     pointer-events: none;
+    overflow: hidden;
 }
 
 /* Navigation Buttons */
@@ -139,6 +140,32 @@ body::before {
     opacity: 1;
     -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg);
+    -webkit-animation: card-enter 0.25s ease-out;
+    animation: card-enter 0.25s ease-out;
+}
+
+@-webkit-keyframes card-enter {
+    from {
+        -webkit-transform: scale(0.95) rotateY(0deg);
+        transform: scale(0.95) rotateY(0deg);
+        opacity: 0.8;
+    }
+    to {
+        -webkit-transform: scale(1) rotateY(0deg);
+        transform: scale(1) rotateY(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes card-enter {
+    from {
+        transform: scale(0.95) rotateY(0deg);
+        opacity: 0.8;
+    }
+    to {
+        transform: scale(1) rotateY(0deg);
+        opacity: 1;
+    }
 }
 
 .card.flipping-out {
@@ -361,7 +388,7 @@ body::before {
     .nav-buttons {
         left: 50%;
         top: auto;
-        bottom: 20px;
+        bottom: max(20px, env(safe-area-inset-bottom));
         -webkit-transform: translateX(-50%);
         transform: translateX(-50%);
         flex-direction: row;

@@ -9,10 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const navButtons = document.querySelectorAll('.nav-btn');
 
     let currentCard = card1;
+    let isTransitioning = false;
 
     // Navigation button functionality
     navButtons.forEach(button => {
         button.addEventListener('click', () => {
+            if (isTransitioning) return;
             const targetCardId = button.getAttribute('data-card');
             const targetCard = document.getElementById(targetCardId);
 
@@ -83,30 +85,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function switchCard(newCard) {
-        if (currentCard !== newCard) {
-            // Flip out current card
-            currentCard.classList.add('flipping-out');
-            currentCard.classList.remove('active');
+        if (isTransitioning || currentCard === newCard) return;
 
-            // Hide envelope when leaving card1
-            if (currentCard === card1 && newCard !== card1) {
-                envelope.classList.add('hidden');
-                // Also close the envelope if it was open
-                envelopeWrapper.classList.remove('open');
-            }
+        isTransitioning = true;
+        const oldCard = currentCard;
 
-            // Show envelope when returning to card1 (but keep it closed)
-            if (newCard === card1) {
-                envelope.classList.remove('hidden');
-            }
+        // Flip out current card
+        oldCard.classList.add('flipping-out');
+        oldCard.classList.remove('active');
 
-            // Flip in new card after a short delay
-            setTimeout(() => {
-                currentCard.classList.remove('flipping-out');
-                newCard.classList.add('active');
-                currentCard = newCard;
-            }, 400);
+        // Hide envelope when leaving card1
+        if (oldCard === card1 && newCard !== card1) {
+            envelope.classList.add('hidden');
+            envelopeWrapper.classList.remove('open');
         }
+
+        // Show envelope when returning to card1 (but keep it closed)
+        if (newCard === card1) {
+            envelope.classList.remove('hidden');
+        }
+
+        // Use transitionend for reliable timing
+        const handleTransitionEnd = () => {
+            oldCard.classList.remove('flipping-out');
+            newCard.classList.add('active');
+            currentCard = newCard;
+            isTransitioning = false;
+            oldCard.removeEventListener('transitionend', handleTransitionEnd);
+        };
+
+        oldCard.addEventListener('transitionend', handleTransitionEnd);
+
+        // Fallback timeout in case transitionend doesn't fire
+        setTimeout(() => {
+            if (isTransitioning) {
+                handleTransitionEnd();
+            }
+        }, 700);
     }
 
     // Swipe functionality (mobile only)
@@ -124,8 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }, false);
 
     cardContainer.addEventListener('touchend', (e) => {
-        // Don't swipe if we're clicking on a link
-        if (e.target.closest('a')) {
+        // Don't swipe if we're clicking on a link or mid-transition
+        if (e.target.closest('a') || isTransitioning) {
             return;
         }
 
