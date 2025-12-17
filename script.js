@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollArrow = document.getElementById('scrollArrow');
     const card1 = document.getElementById('card1');
     const card2 = document.getElementById('card2');
-    const card3a = document.getElementById('card3a');
+    const card3 = document.getElementById('card3');
     const navButtons = document.querySelectorAll('.nav-btn');
 
     let currentCard = card1;
@@ -68,43 +68,54 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Scroll-triggered animations
-    let scrollTimeout;
-    window.addEventListener('scroll', () => {
-        clearTimeout(scrollTimeout);
+    // Swipe functionality
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
 
-        scrollTimeout = setTimeout(() => {
-            const scrollPosition = window.scrollY;
-            const windowHeight = window.innerHeight;
+    const cardContainer = document.getElementById('cardContainer');
+    const minSwipeDistance = 50;
 
-            // Hide arrow when user starts scrolling
-            if (scrollPosition > 10) {
-                scrollArrow.classList.add('hidden');
+    cardContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+    }, false);
+
+    cardContainer.addEventListener('touchend', (e) => {
+        // Don't swipe if we're clicking on a link
+        if (e.target.closest('a')) {
+            return;
+        }
+
+        touchEndX = e.changedTouches[0].screenX;
+        touchEndY = e.changedTouches[0].screenY;
+
+        const swipeDistanceX = touchEndX - touchStartX;
+        const swipeDistanceY = Math.abs(touchEndY - touchStartY);
+
+        // Only register horizontal swipes (ignore if vertical swipe is dominant)
+        if (Math.abs(swipeDistanceX) > minSwipeDistance && swipeDistanceY < Math.abs(swipeDistanceX)) {
+            if (swipeDistanceX < 0) {
+                // Swipe left - go to next card
+                if (currentCard === card1) {
+                    switchCard(card2);
+                    updateActiveButtonByCard('card2');
+                } else if (currentCard === card2) {
+                    switchCard(card3);
+                    updateActiveButtonByCard('card3');
+                }
             } else {
-                scrollArrow.classList.remove('hidden');
+                // Swipe right - go to previous card
+                if (currentCard === card3) {
+                    switchCard(card2);
+                    updateActiveButtonByCard('card2');
+                } else if (currentCard === card2) {
+                    switchCard(card1);
+                    updateActiveButtonByCard('card1');
+                }
             }
+        }
+    }, false);
 
-            // Phase 1: Hide envelope at 30% scroll
-            if (scrollPosition > windowHeight * 0.3) {
-                envelope.classList.add('hidden');
-            } else {
-                envelope.classList.remove('hidden');
-            }
-
-            // Determine which card to show based on scroll position
-            if (scrollPosition > windowHeight * 1.8) {
-                // Phase 3: Show card3a at 180% scroll
-                switchCard(card3a);
-                updateActiveButtonByCard('card3a');
-            } else if (scrollPosition > windowHeight * 1.0) {
-                // Phase 2: Show card2 at 100% scroll
-                switchCard(card2);
-                updateActiveButtonByCard('card2');
-            } else {
-                // Initial state: Show card1
-                switchCard(card1);
-                updateActiveButtonByCard('card1');
-            }
-        }, 10);
-    });
 });
