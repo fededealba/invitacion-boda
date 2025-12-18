@@ -133,13 +133,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const cardContainer = document.getElementById('cardContainer');
     const minSwipeDistance = 50;
 
-    cardContainer.addEventListener('touchstart', (e) => {
+    document.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
         touchStartY = e.changedTouches[0].screenY;
     }, false);
 
-    cardContainer.addEventListener('touchend', (e) => {
-        // Don't swipe if we're clicking on a link or mid-transition
+    document.addEventListener('touchend', (e) => {
+        // Don't swipe if we're clicking on a link or mid-transition or scrolling
         if (e.target.closest('a') || isTransitioning) {
             return;
         }
