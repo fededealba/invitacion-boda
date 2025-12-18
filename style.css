@@ -333,7 +333,7 @@ body::before {
     width: 75%;
     max-width: 450px;
     height: auto;
-    z-index: 0;
+    z-index: 5;
     -webkit-transform: rotate(15deg);
     transform: rotate(15deg);
     -webkit-transition: -webkit-transform 0.8s ease-in-out, opacity 0.8s ease-in-out;

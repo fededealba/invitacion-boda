@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let touchEndY = 0;
 
     const cardContainer = document.getElementById('cardContainer');
-    const minSwipeDistance = 50;
+    const minSwipeDistance = 30;
 
     document.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
