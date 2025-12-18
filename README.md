@@ -6,9 +6,13 @@ Digital wedding invitation for Federico & Hélène's celebration in Tequisquiapa
 
 This is a responsive, interactive web invitation built with vanilla HTML, CSS, and JavaScript. It features:
 
--   **Interactive Card Interface:** A 3D flipping card experience.
--   **Mobile Optimization:** Touch gestures (swipe to change cards, tap to open envelope).
--   **Performance Optimized:** Lazy loading, GPU-accelerated animations, and optimized assets.
+*   **3D Card Flip Animation:** Smooth CSS3 transforms for a realistic envelope and card experience.
+*   **Mobile-Optimized:** Responsive design ensuring a great experience on all devices.
+*   **High Performance:**
+    *   Assets converted to **WebP** for fast loading.
+    *   Compressed PDF documents.
+    *   GPU-accelerated animations.
+*   **Interactive Venue Map:** overlay buttons on Card 2 linking directly to Google Maps. assets.
 
 ## Project Structure
 
