@@ -160,6 +160,33 @@ body::before {
     pointer-events: none;
 }
 
+/* Venue Links on card2 */
+.venue-link {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 60%;
+    height: 8%;
+    cursor: pointer;
+    z-index: 10;
+    pointer-events: auto;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+.venue-link.rompehielo {
+    top: 32%;
+}
+
+.venue-link.ceremonia-recepcion {
+    top: 48%;
+    height: 20%;
+}
+
+.venue-link.tornaboda {
+    top: 80%;
+}
+
 /* PDF Link on card3a */
 .pdf-link {
     position: absolute;
@@ -333,7 +360,7 @@ body::before {
     width: 75%;
     max-width: 450px;
     height: auto;
-    z-index: 5;
+    z-index: 0;
     -webkit-transform: rotate(15deg);
     transform: rotate(15deg);
     -webkit-transition: -webkit-transform 0.8s ease-in-out, opacity 0.8s ease-in-out;

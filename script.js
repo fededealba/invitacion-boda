@@ -185,6 +185,8 @@ document.addEventListener('DOMContentLoaded', () => {
         clearTimeout(scrollTimeout);
 
         scrollTimeout = setTimeout(() => {
+            if (window.innerWidth <= 768) return;
+
             const scrollPosition = window.scrollY;
             const windowHeight = window.innerHeight;
 
