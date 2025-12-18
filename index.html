@@ -26,11 +26,7 @@
 
 <body>
     <div class="invitation-container">
-        <div class="nav-buttons">
-            <button class="nav-btn active" data-card="card1" aria-label="Ir a invitación">1</button>
-            <button class="nav-btn" data-card="card2" aria-label="Ir a detalles">2</button>
-            <button class="nav-btn" data-card="card3" aria-label="Ir a información">3</button>
-        </div>
+
         <div class="envelope-wrapper" id="envelopeWrapper">
             <div class="envelope">
                 <img src="assets/envelope.png" alt="Sobre" width="1280" height="932" />
@@ -44,12 +40,7 @@
                                 stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </div>
-                    <div class="swipe-arrow" id="swipeArrow">
-                        <svg width="60" height="60" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 20L30 20M30 20L22 12M30 20L22 28" stroke="#FFFFFF" stroke-width="3"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
+
                 </div>
                 <div class="card" id="card2">
                     <img src="assets/card2.png" alt="Detalles de la Boda" width="1244" height="1600" loading="lazy" />
@@ -63,6 +54,19 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="nav-buttons">
+        <button class="nav-btn active" data-card="card1" aria-label="Ir a invitación">1</button>
+        <button class="nav-btn" data-card="card2" aria-label="Ir a detalles">2</button>
+        <button class="nav-btn" data-card="card3" aria-label="Ir a información">3</button>
+    </div>
+
+    <div class="swipe-arrow" id="swipeArrow">
+        <svg width="60" height="60" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 20L30 20M30 20L22 12M30 20L22 28" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </svg>
     </div>
 
     <script src="script.js"></script>
