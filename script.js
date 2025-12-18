@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const touchMoveY = Math.abs(touchEndY - envelopeTouchStartY);
 
                 // Only toggle if it was a quick tap without movement
-                if (touchDuration <= 300 && touchMoveX <= 10 && touchMoveY <= 10) {
+                if (touchDuration <= 300 && touchMoveX <= 30 && touchMoveY <= 30) {
                     e.preventDefault();
                     e.stopPropagation();
                     envelopeWasTapped = true;
