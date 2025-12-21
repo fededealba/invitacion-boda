@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Prevent default touch behavior on mobile to allow custom swipe logic
+    document.addEventListener('touchmove', (e) => {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+
     const envelopeWrapper = document.getElementById('envelopeWrapper');
     const envelope = document.querySelector('.envelope');
     const scrollArrow = document.getElementById('scrollArrow');
@@ -48,18 +55,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (envelopeWrapper) {
         envelopeWrapper.addEventListener('touchstart', (e) => {
+            if (isTransitioning) return;
             envelopeTouchStartTime = Date.now();
-            envelopeTouchStartX = e.changedTouches[0].screenX;
-            envelopeTouchStartY = e.changedTouches[0].screenY;
+            envelopeTouchStartX = e.changedTouches[0].clientX;
+            envelopeTouchStartY = e.changedTouches[0].clientY;
             envelopeWasTapped = false;
         }, false);
 
         envelopeWrapper.addEventListener('touchend', (e) => {
-            // Only toggle envelope if we're on card1
-            if (currentCard === card1) {
+            // Only toggle envelope if we're on card1 and not mid-animation
+            if (currentCard === card1 && !isTransitioning) {
                 const touchDuration = Date.now() - envelopeTouchStartTime;
-                const touchEndX = e.changedTouches[0].screenX;
-                const touchEndY = e.changedTouches[0].screenY;
+                const touchEndX = e.changedTouches[0].clientX;
+                const touchEndY = e.changedTouches[0].clientY;
                 const touchMoveX = Math.abs(touchEndX - envelopeTouchStartX);
                 const touchMoveY = Math.abs(touchEndY - envelopeTouchStartY);
 
@@ -75,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Desktop click support
         envelopeWrapper.addEventListener('click', (e) => {
-            if (currentCard === card1 && !envelopeWasTapped) {
+            if (currentCard === card1 && !envelopeWasTapped && !isTransitioning) {
                 // Don't trigger if clicking navigation buttons or arrows (though they are outside now)
                 if (e.target.closest('.nav-btn') || e.target.closest('.swipe-arrow') || e.target.closest('.scroll-arrow')) return;
 
@@ -134,11 +142,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let touchEndY = 0;
 
     const cardContainer = document.getElementById('cardContainer');
-    const minSwipeDistance = 30;
+    const minSwipeDistance = 20;
 
     document.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-        touchStartY = e.changedTouches[0].screenY;
+        touchStartX = e.changedTouches[0].clientX;
+        touchStartY = e.changedTouches[0].clientY;
     }, false);
 
     document.addEventListener('touchend', (e) => {
@@ -147,8 +155,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        touchEndX = e.changedTouches[0].screenX;
-        touchEndY = e.changedTouches[0].screenY;
+        touchEndX = e.changedTouches[0].clientX;
+        touchEndY = e.changedTouches[0].clientY;
 
         const swipeDistanceX = touchEndX - touchStartX;
         const swipeDistanceY = Math.abs(touchEndY - touchStartY);
