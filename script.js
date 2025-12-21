@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Prevent default touch behavior on mobile to allow custom swipe logic
     document.addEventListener('touchmove', (e) => {
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth <= 768 && e.touches.length === 1) {
             e.preventDefault();
         }
     }, { passive: false });

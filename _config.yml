@@ -1,0 +1,16 @@
+title: Boda Federico & Hélène
+description: Wedding celebration in Tequisquiapan, Mexico – March 7, 2026.
+baseurl: "/invitacion-boda" # match the repository name
+url: "https://fededealba.github.io"
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - create_preview.py
+  - obsolete_copy/
+  - assets/originals/
