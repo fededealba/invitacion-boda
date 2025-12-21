@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             envelopeTouchStartX = e.changedTouches[0].screenX;
             envelopeTouchStartY = e.changedTouches[0].screenY;
             envelopeWasTapped = false;
-        }, false);
+        }, { passive: false });
 
         envelope.addEventListener('touchend', (e) => {
             // Only toggle envelope if we're on card1
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     envelopeWrapper.classList.toggle('open');
                 }
             }
-        }, false);
+        }, { passive: false });
 
         // Desktop click support
         envelope.addEventListener('click', (e) => {
