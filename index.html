@@ -6,6 +6,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WEKL36KVQV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-WEKL36KVQV');
+    </script>
     <title>Boda Federico & Hélène</title>
     <meta name="description"
         content="Wedding celebration of Federico & Hélène in Tequisquiapan, Mexico – March 7, 2026." />
@@ -53,18 +62,19 @@
                 <div class="card" id="card2">
                     <img src="assets/card2.webp" alt="Detalles de la Boda" width="1244" height="1600" loading="lazy" />
                     <a href="https://maps.app.goo.gl/WNE6d8zsfGqVxa2b6" target="_blank" class="venue-link rompehielo"
-                        aria-label="Ubicación Rompehielo"></a>
+                        id="link-rompehielo" aria-label="Ubicación Rompehielo"></a>
                     <a href="https://maps.app.goo.gl/b3WpXmzbLDvxNwtq9" target="_blank"
-                        class="venue-link ceremonia-recepcion" aria-label="Ubicación Ceremonia y Recepción"></a>
+                        class="venue-link ceremonia-recepcion" id="link-ceremonia"
+                        aria-label="Ubicación Ceremonia y Recepción"></a>
                     <a href="https://maps.app.goo.gl/1EZYatQkEiGLstvu7" target="_blank" class="venue-link tornaboda"
-                        aria-label="Ubicación Tornaboda"></a>
+                        id="link-tornaboda" aria-label="Ubicación Tornaboda"></a>
                 </div>
                 <div class="card" id="card3">
                     <img src="assets/card3.webp" alt="Card 3" width="1244" height="1600" loading="lazy" />
-                    <a href="documents/Tequisquiapan_Hoteles.pdf" target="_blank" class="pdf-link"
+                    <a href="documents/Tequisquiapan_Hoteles.pdf" target="_blank" class="pdf-link" id="link-hotels"
                         aria-label="Más información sobre hoteles"></a>
                     <a href="https://wa.me/14155238886?text=join%20under-complete" target="_blank" class="whatsapp-link"
-                        aria-label="Unirse al grupo de WhatsApp"></a>
+                        id="link-whatsapp" aria-label="Unirse al grupo de WhatsApp"></a>
                 </div>
             </div>
         </div>

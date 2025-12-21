@@ -232,4 +232,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 10);
     });
 
+    // Analytics Event Tracking
+    function setupTracking() {
+        const events = [
+            { id: 'link-rompehielo', name: 'click_rompehielo_map' },
+            { id: 'link-ceremonia', name: 'click_ceremonia_map' },
+            { id: 'link-tornaboda', name: 'click_tornaboda_map' },
+            { id: 'link-hotels', name: 'click_hotels_pdf' },
+            { id: 'link-whatsapp', name: 'click_whatsapp_join' }
+        ];
+
+        events.forEach(event => {
+            const el = document.getElementById(event.id);
+            if (el) {
+                el.addEventListener('click', () => {
+                    if (typeof gtag === 'function') {
+                        gtag('event', event.name, {
+                            'event_category': 'Engagement',
+                            'event_label': event.id
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    setupTracking();
 });
