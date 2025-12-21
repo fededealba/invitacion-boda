@@ -103,7 +103,6 @@ body::before {
     align-items: center;
     padding: 0 3%;
     pointer-events: auto;
-    touch-action: none;
 }
 
 .envelope-wrapper:hover .envelope {
@@ -119,7 +118,7 @@ body::before {
     z-index: 1;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
-    pointer-events: none;
+    pointer-events: auto;
 }
 
 .card {
@@ -135,7 +134,6 @@ body::before {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     will-change: transform, opacity;
-    pointer-events: none;
 }
 
 .card:first-child {
@@ -370,7 +368,6 @@ body::before {
     -webkit-filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.3));
     filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.3));
     will-change: transform, opacity;
-    touch-action: none;
 }
 
 .envelope img {

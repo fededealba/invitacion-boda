@@ -46,15 +46,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let envelopeTouchStartY = 0;
     let envelopeWasTapped = false;
 
-    if (envelope) {
-        envelope.addEventListener('touchstart', (e) => {
+    if (envelopeWrapper) {
+        envelopeWrapper.addEventListener('touchstart', (e) => {
             envelopeTouchStartTime = Date.now();
             envelopeTouchStartX = e.changedTouches[0].screenX;
             envelopeTouchStartY = e.changedTouches[0].screenY;
             envelopeWasTapped = false;
-        }, { passive: false });
+        }, false);
 
-        envelope.addEventListener('touchend', (e) => {
+        envelopeWrapper.addEventListener('touchend', (e) => {
             // Only toggle envelope if we're on card1
             if (currentCard === card1) {
                 const touchDuration = Date.now() - envelopeTouchStartTime;
@@ -71,11 +71,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     envelopeWrapper.classList.toggle('open');
                 }
             }
-        }, { passive: false });
+        }, false);
 
         // Desktop click support
-        envelope.addEventListener('click', (e) => {
+        envelopeWrapper.addEventListener('click', (e) => {
             if (currentCard === card1 && !envelopeWasTapped) {
+                // Don't trigger if clicking navigation buttons or arrows (though they are outside now)
+                if (e.target.closest('.nav-btn') || e.target.closest('.swipe-arrow') || e.target.closest('.scroll-arrow')) return;
+
                 e.preventDefault();
                 e.stopPropagation();
                 envelopeWrapper.classList.toggle('open');
