@@ -441,8 +441,7 @@ body::before {
     }
 
     .swipe-arrow {
-        display: block;
-        bottom: 110px;
+        display: none;
     }
 }
 
