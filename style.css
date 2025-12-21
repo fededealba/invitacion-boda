@@ -355,14 +355,14 @@ body::before {
 /* Envelope Image */
 .envelope {
     position: absolute;
-    top: 10%;
-    right: -5%;
-    width: 75%;
-    max-width: 450px;
+    top: 0%;
+    right: -10%;
+    width: 85%;
+    max-width: 800px;
     height: auto;
     z-index: 0;
-    -webkit-transform: rotate(15deg);
-    transform: rotate(15deg);
+    -webkit-transform: rotate(18deg);
+    transform: rotate(18deg);
     -webkit-transition: -webkit-transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
     transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
     -webkit-filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.3));
@@ -417,10 +417,13 @@ body::before {
     }
 
     .envelope {
-        width: 65%;
-        max-width: 350px;
-        top: 15%;
-        right: -5%;
+        width: 135%;
+        max-width: 800px;
+        top: 2%;
+        right: -45%;
+        left: auto;
+        -webkit-transform: rotate(15deg);
+        transform: rotate(15deg);
     }
 
     .nav-buttons {
@@ -450,8 +453,11 @@ body::before {
     }
 
     .envelope {
-        width: 65%;
-        top: 12%;
-        right: -5%;
+        width: 135%;
+        top: 2%;
+        right: -45%;
+        left: auto;
+        -webkit-transform: rotate(15deg);
+        transform: rotate(15deg);
     }
 }
